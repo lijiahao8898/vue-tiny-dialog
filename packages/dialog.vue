@@ -6,12 +6,16 @@
         <p>{{title}}</p>
       </div>
       <div :class="classPre + '__content'">
-        <p>{{container}}</p>
-        <p>{{tip}}</p>
+        <slot>
+          <p>{{container}}</p>
+          <p>{{tip}}</p>
+        </slot>
       </div>
       <div :class="classPre + '__footer'">
-        <button @click="confirm()">确认</button>
-        <button class="default" @click="close()">取消</button>
+        <slot name="footer">
+          <button @click="confirm()">确认</button>
+          <button class="default" @click="close()">取消</button>
+        </slot>
       </div>
     </div>
   </div>
@@ -60,11 +64,9 @@
     },
     methods: {
       close: function () {
-        // window.eventBus.$emit('closeDialog');
         this.$emit('close');
       },
       confirm: function () {
-        // window.eventBus.$emit('confirmDialog');
         this.$emit('close');
       }
     }
@@ -72,6 +74,11 @@
 </script>
 
 <style type="text/scss" lang="scss" scoped>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
   .vue-tiny-dialog {
     position: fixed;
     top: 0;
@@ -88,7 +95,6 @@
       background-color: #fff;
       position: relative;
       width: 400px;
-      height: 200px;
       z-index: 1;
       margin: 0 auto;
       border-radius: 5px;
@@ -97,21 +103,20 @@
 
     &__header {
       text-align: left;
-      text-indent: 15px;
-      font-size: 20px;
-      margin-left: 5px;
+      font-size: 18px;
+      font-weight: bold;
+      margin: 15px;
     }
 
     &__content {
-      font-size: 16px;
+      font-size: 14px;
+      padding: 15px;
+      min-height: 50px;
     }
 
     &__footer {
-      position: absolute;
-      left: 10px;
-      right: 10px;
-      bottom: 5px;
       text-align: right;
+      margin: 10px 0;
     }
   }
 
@@ -124,7 +129,7 @@
     font-weight: 600;
     font-size: 14px;
     padding: 8px 20px;
-    margin: 0;
+    margin-right: 10px;
     cursor: pointer;
   }
 

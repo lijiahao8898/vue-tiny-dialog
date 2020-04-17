@@ -1,13 +1,10 @@
 import dialogComponent from './dialog.vue';
 
-const _dialogCreate = (Vue, properties) => {
+const _dialogCreate = (properties, Vue) => {
+  console.log(properties);
   const instance = new Vue({
     render (h) {
-      return h(dialogComponent, {
-        props: {
-          config: properties
-        }
-      });
+      return h(dialogComponent, properties);
     }
   });
   const component = instance.$mount();
@@ -22,10 +19,10 @@ const tinyDialog = {
     Vue.prototype.$tinyDialog = function (Vue) {
       return {
         open (props) {
-          _dialogCreate(Vue, props);
+          _dialogCreate(props, Vue);
         }
-      }(Vue);
-    };
+      };
+    }(Vue);
   }
 };
 

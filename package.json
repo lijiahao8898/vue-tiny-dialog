@@ -1,7 +1,7 @@
 {
   "name": "vue-tiny-dialog",
   "description": "Vue 弹框组件",
-  "version": "1.0.9",
+  "version": "1.0.13",
   "author": "lijiahao8898 <472239548@qq.com>",
   "private": false,
   "scripts": {
@@ -10,11 +10,12 @@
     "lint": "vue-cli-service lint",
     "lib": "vue-cli-service build --target lib --name vue-tiny-dialog --dest dist packages/index.js"
   },
-  "main": "packages/index.js",
+  "main": "dist/vue-tiny-dialog.umd.min.js",
   "files": [
     "dist",
     "packages",
-    "package.json"
+    "package.json",
+    "README.md"
   ],
   "dependencies": {
     "core-js": "^3.6.4",
@@ -44,10 +45,5 @@
       "parser": "babel-eslint"
     },
     "rules": {}
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+  }
 }
