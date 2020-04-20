@@ -1,20 +1,20 @@
 <template>
   <div id="app">
-<!--    <img alt="Vue logo" src="./assets/logo.png">-->
-<!--    <HelloWorld msg="Welcome to Your Vue.js App"/>-->
-    <tiny-dialog :visible="visible"
+    <!--    <img alt="Vue logo" src="./assets/logo.png">-->
+    <!--    <HelloWorld msg="Welcome to Your Vue.js App"/>-->
+    <chaos-dialog :visible="visible"
                  title="温馨提示！"
                  container="你好"
                  tip="我是一个tip"
                  @close="close"
     >
       <div class="con">插槽内容</div>
-<!--      <template slot="footer">-->
-<!--        <div>-->
-<!--          <button>插槽按钮</button>-->
-<!--        </div>-->
-<!--      </template>-->
-    </tiny-dialog>
+      <!--      <template slot="footer">-->
+      <!--        <div>-->
+      <!--          <button>插槽按钮</button>-->
+      <!--        </div>-->
+      <!--      </template>-->
+    </chaos-dialog>
     <div class="btn">
       <button class="app-open" @click="open">打开</button>
     </div>
@@ -36,23 +36,7 @@
       };
     },
     mounted () {
-      this.$tinyDialog.open({
-        props: {
-          visible: this.visible2,
-          title: 'Hello World~',
-          container: 'this is container!',
-          tip: 'this is tip!',
-        },
-        on: {
-          close: () => {
-            console.log(1);
-            this.visible2 = false;
-            console.log(this);
-          }
-        }
-      });
 
-      // this.$tinyDialog.close();
     },
     methods: {
       open () {

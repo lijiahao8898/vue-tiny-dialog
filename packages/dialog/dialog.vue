@@ -23,7 +23,7 @@
 
 <script>
   export default {
-    name: 'vue-tiny-dialog',
+    name: 'chaos-dialog',
     props: {
       visible: {
         type: Boolean,
@@ -52,12 +52,12 @@
     },
     data () {
       return {
-        classPre: 'vue-tiny-dialog',
+        classPre: 'chaos-dialog',
         style: {
           width: this.width + 'px',
           height: this.height + 'px'
         },
-        isConfirm: this.confirm
+        isConfirm: this.confirm,
       };
     },
     mounted () {
@@ -79,7 +79,7 @@
     padding: 0;
   }
 
-  .vue-tiny-dialog {
+  .chaos-dialog {
     position: fixed;
     top: 0;
     right: 0;
