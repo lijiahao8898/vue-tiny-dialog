@@ -3,7 +3,9 @@
     <div :class="classPre + '__wrapper'"
          :style="style">
       <div :class="classPre + '__header'">
-        <p>{{title}}</p>
+        <slot name="header">
+          <p>{{title}}</p>
+        </slot>
       </div>
       <div :class="classPre + '__content'">
         <slot>
@@ -13,7 +15,7 @@
       </div>
       <div :class="classPre + '__footer'">
         <slot name="footer">
-          <button @click="confirm()">确认</button>
+          <button class="confirm" @click="confirm()">确认</button>
           <button class="default" @click="close()">取消</button>
         </slot>
       </div>
@@ -23,7 +25,7 @@
 
 <script>
   export default {
-    name: 'chaos-dialog',
+    name: 'vue-tiny-dialog',
     props: {
       visible: {
         type: Boolean,
@@ -52,7 +54,7 @@
     },
     data () {
       return {
-        classPre: 'chaos-dialog',
+        classPre: 'vue-tiny-dialog',
         style: {
           width: this.width + 'px',
           height: this.height + 'px'
@@ -79,7 +81,7 @@
     padding: 0;
   }
 
-  .chaos-dialog {
+  .vue-tiny-dialog {
     position: fixed;
     top: 0;
     right: 0;
@@ -105,18 +107,18 @@
       text-align: left;
       font-size: 18px;
       font-weight: bold;
-      margin: 15px;
+      margin: 10px;
     }
 
     &__content {
       font-size: 14px;
-      padding: 15px;
+      padding: 10px;
       min-height: 50px;
     }
 
     &__footer {
       text-align: right;
-      margin: 10px 0;
+      padding: 10px;
     }
   }
 
@@ -129,8 +131,11 @@
     font-weight: 600;
     font-size: 14px;
     padding: 8px 20px;
-    margin-right: 10px;
     cursor: pointer;
+  }
+
+  button.confirm {
+    margin-right: 10px;
   }
 
   button.default {

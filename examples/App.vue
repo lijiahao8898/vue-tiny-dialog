@@ -2,19 +2,20 @@
   <div id="app">
     <!--    <img alt="Vue logo" src="./assets/logo.png">-->
     <!--    <HelloWorld msg="Welcome to Your Vue.js App"/>-->
-    <chaos-dialog :visible="visible"
-                 title="温馨提示！"
-                 container="你好"
-                 tip="我是一个tip"
-                 @close="close"
+    <vue-tiny-dialog :visible="visible"
+                  title="温馨提示！"
+                  container="你好"
+                  tip="我是一个tip"
+                  @close="close"
     >
+      <template slot="header">插槽标题</template>
       <div class="con">插槽内容</div>
-      <!--      <template slot="footer">-->
-      <!--        <div>-->
-      <!--          <button>插槽按钮</button>-->
-      <!--        </div>-->
-      <!--      </template>-->
-    </chaos-dialog>
+      <template slot="footer">
+        <div>
+          <button>插槽按钮</button>
+        </div>
+      </template>
+    </vue-tiny-dialog>
     <div class="btn">
       <button class="app-open" @click="open">打开</button>
     </div>
