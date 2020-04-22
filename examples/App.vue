@@ -12,7 +12,7 @@
       <div class="con">插槽内容</div>
       <template slot="footer">
         <div>
-          <button>插槽按钮</button>
+          <button @click="close">插槽按钮</button>
         </div>
       </template>
     </vue-tiny-dialog>

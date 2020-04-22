@@ -11,38 +11,15 @@ import 'vue-tiny-dialog/dist/vue-tiny-dialog.css';
 Vue.use(tinyDialog);
 ```
 
-and then in `.vue`：
+and then in your `*.vue`：
 
 ```
-<vue-tiny-dialog
-      :config="config"
-      @closeDialog="close"
-      @confirmDialog="confirm"></tiny-dialog>
-
-
-      data () {
-        return {
-          config: {
-            info: '',
-            confirm: true,
-            show: true,
-            title: '',
-            container: '',
-            width: '',
-            height: ''
-          }
-        }
-      },
-</vue-tiny-dialog>
+<vue-tiny-dialog></vue-tiny-dialog>
 ```
 
-finally：
+finally it works
 
-```js
-// it works
-```
-
-### options in config
+### options in props
 ```
 visible: {
   type: Boolean,
@@ -78,7 +55,7 @@ height: {
 * width - 宽度
 * height - 高度
 
-## 支持自定义插槽
+## slot of header、footer、default
 ```vue
  <vue-tiny-dialog :visible="visible"
                  title="温馨提示！"
