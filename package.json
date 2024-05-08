@@ -1,7 +1,7 @@
 {
   "name": "vue-tiny-dialog",
   "description": "Vue组件",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "lijiahao8898 <472239548@qq.com>",
   "private": false,
   "scripts": {
