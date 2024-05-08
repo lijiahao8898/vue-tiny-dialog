@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
-import chaos from '../packages/index'
+import VueTinyDialog from '../packages/index'
 Vue.config.productionTip = false;
-Vue.use(chaos);
+Vue.use(VueTinyDialog);
 
 new Vue({
   render: h => h(App),

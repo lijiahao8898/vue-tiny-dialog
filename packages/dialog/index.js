@@ -1,20 +1,73 @@
-// import tinyDialog from './dialog.vue';
-// import Vue from 'vue';
-// const DialogConstructor = Vue.extend(tinyDialog);
-//
-// const dialog = (properties) => {
-//   console.log(properties);
-//   properties = properties || {};
-//   const instance = new DialogConstructor({
-//     props: properties
-//   });
-//   const component = instance.$mount();
-//   document.body.appendChild(component.$el);
-// };
+import Vue from 'vue';
+import VueTinyDialog from "./dialog";
+let _options = {}
 
-import dialogComponent from './dialog.vue';
-dialogComponent.install = function (Vue) {
-  Vue.component(dialogComponent.name, dialogComponent);
-};
+/**
+ * @description: 初始化加载组件
+ * @param {*} Component
+ * @return {*}
+ */
+function loadComponent(Component) {
+  if (typeof Component === 'function') {
+    return new Promise((resolve) => {
+      Component().then((resp) => {
+        resolve(resp.default)
+      })
+    })
+  }
+  return Promise.resolve(Component)
+}
 
-export default dialogComponent;
+/**
+ * 打开一个模态框
+ */
+const initVueTinyDialog = (options = _options) => {
+  return async (props, target = 'body') => {
+    const _component = await loadComponent(VueTinyDialog)
+    return new Promise((resolve) => {
+      // 创建构造器
+      const Profile = Vue.extend(_component)
+      // 创建 Profile 实例，并挂载到一个元素上。
+      const vm = new Profile({
+        propsData: props,
+        _confirm,
+        _cancel,
+        ...options,
+      }).$mount()
+      // 将组建实例加入dom中
+      document.querySelector(target).appendChild(vm.$el)
+
+      /**
+       * 弹窗取消方法
+       */
+      function _cancel(value) {
+        destroyDialog()
+        resolve(value)
+      }
+
+      /**
+       * 弹窗确认方法
+       */
+      function _confirm(value) {
+        destroyDialog()
+        resolve(value)
+      }
+
+      function destroyDialog() {
+        vm.$destroy()
+        const flag = vm.$el.ownerDocument.body.contains(vm.$el)
+        if (flag) document.querySelector(target).removeChild(vm.$el)
+      }
+    })
+  }
+}
+
+const VueTinyDialogCreate = initVueTinyDialog()
+
+VueTinyDialogCreate.install = function (Vue, options = {}) {
+  _options = options || {}
+  Vue.prototype.$tinyDialog = initVueTinyDialog(options)
+}
+
+export default VueTinyDialogCreate
+export {VueTinyDialog}
